@@ -1,0 +1,6 @@
+D:\d1-d2\Module3HomeWork\Module3HomeWork\bin\Debug\Module3HomeWork.exe.config
+D:\d1-d2\Module3HomeWork\Module3HomeWork\bin\Debug\Module3HomeWork.exe
+D:\d1-d2\Module3HomeWork\Module3HomeWork\bin\Debug\Module3HomeWork.pdb
+D:\d1-d2\Module3HomeWork\Module3HomeWork\obj\Debug\Module3HomeWork.csprojResolveAssemblyReference.cache
+D:\d1-d2\Module3HomeWork\Module3HomeWork\obj\Debug\Module3HomeWork.exe
+D:\d1-d2\Module3HomeWork\Module3HomeWork\obj\Debug\Module3HomeWork.pdb
