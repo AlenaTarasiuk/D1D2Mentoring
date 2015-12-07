@@ -8,20 +8,31 @@ using System.Threading.Tasks;
 namespace Module4HomeWork
 {
     class task3
+    { }
+
+    public class MyCollection2
     {
-        class MyCollection : IEnumerable<int>
+       public List<Int32> mylist;
+
+        public MyCollection2()
         {
-            private Random rand = new Random();
+            mylist = new List<Int32>();
+        }
 
-            public IEnumerator<int> GetEnumerator()
-            {
-                while (true)
-                    yield return rand.Next();
-            }
+        public void Add(int element)
+        {
+            mylist.Add(element);
+        }
 
-            IEnumerator IEnumerable.GetEnumerator()
+        public IEnumerator GetEnumerator()
+        {
+            foreach (int number in mylist)
             {
-                return GetEnumerator();
+                if (number > 0)
+                {
+                    yield return number;
+                }
+                else break;
             }
         }
     }

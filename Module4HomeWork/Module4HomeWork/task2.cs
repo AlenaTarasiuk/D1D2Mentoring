@@ -7,21 +7,38 @@ using System.Threading.Tasks;
 
 namespace Module4HomeWork
 {
-    class task2 : IComparable<int>
-    {
-        List<int> listNumbers = new List<int>();
+    class task2
+    { }
 
-        public void ComparisonObjectWithElementsCollection(object obj)
+    public class MyCollection<T> where T : IComparable<T>
+    {
+        private List<T> listNumbers;
+        private T element;
+
+        public MyCollection()
         {
-            foreach (int element in listNumbers)
+            listNumbers = new List<T>();
+        }
+
+        public void AddElementInCollection(T element)
+        {
+            listNumbers.Add(element);
+        }
+
+        public IEnumerator ComparisonObjectWithElementsCollection(T obj)
+        {
+            foreach (T element in listNumbers)
             {
-                element.CompareTo(obj);
+                yield return element.CompareTo(obj);
             }
         }
 
-        public int CompareTo(int other)
+        public IEnumerator ComparisonObjectWithElementsCollection(Object obj)
         {
-            throw new NotImplementedException();
+            foreach (T element in listNumbers)
+            {
+                yield return element.Equals(obj);
+            }
         }
     }
 }

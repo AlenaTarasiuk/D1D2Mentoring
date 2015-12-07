@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Diagnostics;
+using System.Collections;
 
 namespace Module4HomeWork
 {
@@ -29,9 +30,24 @@ namespace Module4HomeWork
             Finish(stopWatch);
 
 //2
-            task2 objTask2 = new task2();
+            MyCollection<int> myCollection = new MyCollection<int>();
+            myCollection.AddElementInCollection(23);
+            myCollection.AddElementInCollection(7);
+            myCollection.AddElementInCollection(3);
+            IEnumerator result1 = myCollection.ComparisonObjectWithElementsCollection(23);
+            IEnumerator result2 = myCollection.ComparisonObjectWithElementsCollection("23");
 
+//3            
+            MyCollection2 myCollect = new MyCollection2();
+            myCollect.Add(2);
+            myCollect.Add(5);
+            myCollect.Add(-10);
+            myCollect.Add(1);
 
+            foreach (int i in myCollect)
+            {
+                System.Console.Write(i + " ");
+            }
         }
 
         private static void Finish(Stopwatch stopWatch)
