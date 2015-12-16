@@ -1,0 +1,12 @@
+D:\Users\Alena\Desktop\Task\UnitTests\bin\Debug\UnitTests.dll
+D:\Users\Alena\Desktop\Task\UnitTests\bin\Debug\UnitTests.pdb
+D:\Users\Alena\Desktop\Task\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+D:\Users\Alena\Desktop\Task\UnitTests\obj\Debug\UnitTests.dll
+D:\Users\Alena\Desktop\Task\UnitTests\obj\Debug\UnitTests.pdb
+D:\DotNetMentoring\Task\UnitTests\bin\Debug\UnitTests.dll
+D:\DotNetMentoring\Task\UnitTests\bin\Debug\UnitTests.pdb
+D:\DotNetMentoring\Task\UnitTests\bin\Debug\Task.exe
+D:\DotNetMentoring\Task\UnitTests\bin\Debug\Task.pdb
+D:\DotNetMentoring\Task\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+D:\DotNetMentoring\Task\UnitTests\obj\Debug\UnitTests.dll
+D:\DotNetMentoring\Task\UnitTests\obj\Debug\UnitTests.pdb
