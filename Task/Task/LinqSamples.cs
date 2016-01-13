@@ -48,7 +48,7 @@ namespace SampleQueries
                                           suppliers = dataSource.Suppliers.Where(suppliers => (suppliers.City == customer.City & suppliers.Country == customer.Country)),
                                         });
 		}
-
+        
         [Category("Restriction Operators")]
         [Title("Task 3")]
         [Description("Find all customers who had orders that exceed the sum of variable X.")]
@@ -60,7 +60,7 @@ namespace SampleQueries
                         .Any(order => order > x)
                         );
         }
-
+        
         [Category("Projection Operators")]
         [Title("Task 4")]
         [Description("Give a list of clients indicating starting with a month of the year, they became customers.")]
@@ -72,55 +72,49 @@ namespace SampleQueries
                                               orders = customer.Orders.Select(orders => (orders.OrderDate.Month & orders.OrderDate.Year)).Min(),
                                             });
         }
-
-
+        
         [Category("Groping Operators")]
         [Title("Task 5")]
         [Description("Give a list of clients indicating starting with a month of the year they become customers, a list sorted by year, month, customer turnover.")]
         public IEnumerable Linq5()
         {
-            var customers = dataSource.Customers
-                            .Select(customer => new
+            return dataSource.Customers
+                            .Select(customerNew => new
                                                     {
-                                                        customer.CustomerID,
-                                                        orders = customer.Orders.Select(orders => (orders.OrderDate.Month & orders.OrderDate.Year)).Min(),
-                                                    });
-
-            return customers.OrderBy(dataSource.Customers
-                                .Select(customer => customer.CompanyName)
-                                    .OrderByDescending(dataSource.Customers
-                                    .Select(customer => customer.Orders
-                                        .Where(order => order.OrderDate.Year & order.OrderDate.Month)))
-                                    );
+                                                        companyName = customerNew.CompanyName,
+                                                        orders = customerNew.Orders.Count()>0 ? customerNew.Orders.Min(order => order.OrderDate) : new DateTime(1000),
+                                                        totalOrder = customerNew.Orders.Sum(order => order.Total)
+                                                    })
+                                                    .OrderBy(customer => customer.orders)
+                                                        .OrderBy(customer => customer.totalOrder)
+                                                            .OrderByDescending(customer => customer.companyName);
         }
-
+  
         [Category("Quantifiens Operators")]
         [Title("Task 6")]
         [Description("List all customers who have not specified a digital code or full region or in the phone area code Unknown.")]
         public IEnumerable Linq6()
         {
             return dataSource.Customers
-                        .Select(customer => (!customer.PostalCode.Contains("()") & !customer.PostalCode.Contains("()")));
+                        .Select(customer => (customer.PostalCode == null || !customer.PostalCode.All(c => Char.IsDigit(c)) || String.IsNullOrEmpty(customer.Region) || !customer.Phone.Contains("(")));
         }
-
 
         [Category("Restriction Operators")]
         [Title("Task 7")]
         [Description("Group all products by category, in - on the availability of stock within the last group of sort by cost.")]
-        public void Linq7()
+        public IEnumerable Linq7()
         {
             return dataSource.Products
                     .GroupBy(product => product.Category)
                         .Select(group => new {
                                                 category = group.Key,
                                                 productsByUnitsInStock = group.GroupBy(product => product.UnitsInStock)
-                                             }
-                                             .Select(group2 => new
+                                                .Select(group2 => new
                                                                  {
-                                                                     group = group2.Key,
-                                                                     unitPrice = group2.GroupBy(product => product.UnitPrice)
+                                                                     ptoductGroup = group2.Key,
+                                                                     unitPrice = group2.Select(product => product.UnitPrice)
                                                                   })
-                               );
+                                             });
         }
     
         [Category("Groping Operators")]
@@ -147,24 +141,68 @@ namespace SampleQueries
         public IEnumerable Linq9()
         {
             return dataSource.Customers
-                    .GroupBy(customer => customer.City).Sum();
-
+                    .GroupBy(customer => customer.City)
+                        .Select(customerBy => new
+                                                {
+                                                    City = customerBy.Key,
+                                                    Count = customerBy.Average(order => order.Orders.Length),
+                                                    Total = customerBy.Select(customerBy2 => new 
+                                                                                                {
+                                                                                                    Count = customerBy2.Orders.Length > 0 ? customerBy2.Orders.Average(order => order.Total) : 0
+                                                                                                })
+                                                                                                .Average(order => order.Count)
+                                                });
+        }
+        
+        [Category("Aggregate Operators")]
+        [Title("Task 10.1")]
+        [Description("Make an annual average customer activity by month")]
+        public IEnumerable Linq101()
+        {
             return dataSource.Customers
-                    .GroupBy(customer => customer.City).Count();
+                        .SelectMany(order => order.Orders)
+                            .GroupBy(customer => customer.OrderDate.Month)
+                                .Select(newGroup => new
+                                                {
+                                                    Moth = newGroup.Key,
+                                                    Avrg = newGroup.Average(order => order.Total)
+                                                });
         }
 
         [Category("Aggregate Operators")]
-        [Title("Task 10")]
-        [Description("Make an annual average customer activity by month, by year, by years and months.")]
-        public IEnumerable Linq10()
+        [Title("Task 10.2")]
+        [Description("Make an annual average customer activity by year")]
+        public IEnumerable Linq102()
         {
             return dataSource.Customers
-                        .Where(customer => customer.Orders
-                                .SelectMany(order => new 
-                                                        { 
-                                                            order.OrderDate.Month,
-                                                            order.OrderDate.Year
-                                                        }));
+                        .SelectMany(order => order.Orders)
+                            .GroupBy(customer => customer.OrderDate.Year)
+                                .Select(newGroup => new
+                                                {
+                                                    Year = newGroup.Key,
+                                                    Avrg = newGroup.Average(order => order.Total)
+                                                });
         }
+
+        [Category("Aggregate Operators")]
+        [Title("Task 10.3")]
+        [Description("Make an annual average customer activity by years and months.")]
+        public IEnumerable Linq103()
+        {
+            return dataSource.Customers
+                        .SelectMany(order => order.Orders)
+                            .GroupBy(customer => new
+                                                    {
+                                                        customer.OrderDate.Year,
+                                                        customer.OrderDate.Month
+
+                                                    }).Select(newGroup => new
+                                                                            {
+                                                                                Year = newGroup.Key.Year,
+                                                                                Month = newGroup.Key.Month,
+                                                                                Avrg = newGroup.Average(order => order.Total)
+                                                                             });
+        }
+                              
 	}
 }

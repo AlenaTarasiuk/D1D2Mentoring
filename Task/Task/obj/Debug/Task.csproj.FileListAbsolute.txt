@@ -16,12 +16,3 @@ D:\Users\Alena\Desktop\Task\Task\obj\Debug\SampleSupport.SampleForm.resources
 D:\Users\Alena\Desktop\Task\Task\obj\Debug\Task.csproj.GenerateResource.Cache
 D:\Users\Alena\Desktop\Task\Task\obj\Debug\Task.exe
 D:\Users\Alena\Desktop\Task\Task\obj\Debug\Task.pdb
-D:\DotNetMentoring\Task\Task\bin\Debug\Task.exe.config
-D:\DotNetMentoring\Task\Task\obj\Debug\Task.exe
-D:\DotNetMentoring\Task\Task\obj\Debug\Task.pdb
-D:\DotNetMentoring\Task\Task\bin\Debug\Task.exe
-D:\DotNetMentoring\Task\Task\bin\Debug\Task.pdb
-D:\DotNetMentoring\Task\Task\obj\Debug\Task.Properties.Resources.resources
-D:\DotNetMentoring\Task\Task\obj\Debug\SampleSupport.SampleForm.resources
-D:\DotNetMentoring\Task\Task\obj\Debug\Task.csproj.GenerateResource.Cache
-D:\DotNetMentoring\Task\Task\obj\Debug\Task.csprojResolveAssemblyReference.cache
