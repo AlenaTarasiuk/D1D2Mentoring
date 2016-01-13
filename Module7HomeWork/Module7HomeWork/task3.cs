@@ -25,5 +25,6 @@ namespace Module7HomeWork
         {
             return (IDictionary)Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(TKey, TValue));
         }
+
     }
 }

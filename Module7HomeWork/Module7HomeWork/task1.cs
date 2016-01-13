@@ -21,6 +21,5 @@ namespace Module7HomeWork
         {
             return (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(type));
         }
-
     }
 }

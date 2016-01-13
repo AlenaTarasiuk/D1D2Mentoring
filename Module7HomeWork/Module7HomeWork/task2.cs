@@ -31,5 +31,6 @@ namespace Module7HomeWork
             eventInfo.AddEventHandler(p, handler);
             p.CallEvent();
         }
+
     }
 }

@@ -22,6 +22,7 @@ namespace Module7HomeWork
             foreach (int key in dictionary.Keys)
                 Console.WriteLine(dictionary[key]);
 
+
             Console.ReadKey();
         }
     }
