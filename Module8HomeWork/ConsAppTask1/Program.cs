@@ -7,7 +7,11 @@ namespace ConsAppTask1
         static void Main(string[] args)
         {
             ClassHelper objHepler = new ClassHelper();
-            objHepler.GetLines();
+           
+            Console.Write("please, enter count of rows and press enter -> ");
+            int countRows = Convert.ToInt32(Console.ReadLine());
+
+            objHepler.GetLines(countRows);
             objHepler.PrintFirstSymbolLines();
 
             Console.Read();

@@ -13,11 +13,10 @@ namespace ConsAppTask1
                 Console.WriteLine(ReturnFirstSymbolLine(str));
         }
 
-        public void GetLines()
+        public void GetLines(int countRows)
         {
             try
             {
-                int countRows = GetCountLines();
                 for (int i = 0; i < countRows; i++)
                     listRows.Add(Console.ReadLine());
             }
@@ -25,13 +24,6 @@ namespace ConsAppTask1
             {
                 Console.WriteLine("error: {0}", e.Message);
             }
-        }
-
-        private int GetCountLines()
-        {
-            Console.Write("please, enter count of rows and press enter -> ");
-            int countRows = Convert.ToInt32(Console.ReadLine());
-            return countRows;
         }
 
         public string ReturnFirstSymbolLine(string str)

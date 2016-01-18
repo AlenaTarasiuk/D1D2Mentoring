@@ -5,12 +5,6 @@ namespace Task2
 {
     class ClassConverter
     {
-        public void GetNumberLine()
-        {
-            string textNumber = GetLine();
-            VerifyNumber(textNumber);
-        }
-
         public void GetNumberLine(string textNumber)
         {
             VerifyNumber(textNumber);
@@ -37,13 +31,6 @@ namespace Task2
             {
                 Console.WriteLine("Error: {0}", e.Message);
             }
-        }
-
-        private string GetLine()
-        {
-            Console.Write("please, enter number and press enter -> ");
-            string textNumber = Console.ReadLine();
-                return textNumber;
         }
 
         public int ReturnNumber(string textNumber)
