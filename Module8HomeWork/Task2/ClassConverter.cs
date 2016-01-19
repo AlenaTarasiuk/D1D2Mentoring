@@ -5,37 +5,22 @@ namespace Task2
 {
     class ClassConverter
     {
-        public void GetNumberLine(string textNumber)
+        public int GetNumber(string textNumber)
         {
-            VerifyNumber(textNumber);
-        }
+            char[] mass;
 
-        private void VerifyNumber(string textNumber)
-        {
-            Regex rx = new Regex(@"^\d+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            Match match = rx.Match(textNumber);
+            if (textNumber == null) throw new ArgumentNullException();
+            mass = textNumber.ToCharArray(0, textNumber.Length);
 
-            try
-            {
-                Console.WriteLine("Your number is {0}.", ReturnNumber(textNumber));
-            }
-            catch (ArgumentNullException e)
-            {
-                Console.WriteLine("Input string was null argument!");
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine("Input string was invalid!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: {0}", e.Message);
-            }
-        }
+            for (int i = 0; i < mass.Length; i++)
+                if (Char.IsDigit(mass[i])==false) throw new FormatException();
 
-        public int ReturnNumber(string textNumber)
-        {
-            return Convert.ToInt32(textNumber);
+            int number = 0;
+
+            for (int i = 0; i < mass.Length; i++)
+                number += (int)Math.Pow(10, textNumber.Length - i - 1) * (int)Char.GetNumericValue(mass[i]);
+
+            return number;
         }
     }
 }
