@@ -22,5 +22,28 @@ namespace Task2
 
             return number;
         }
+
+        public void ConvertNumber(string textNumber)
+        {
+            try
+            {
+                Console.WriteLine("Your number is {0}.", GetNumber(textNumber));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine("Input string was null argument!");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Input string was invalid!");
+            }
+        }
+
+        public string InputNumber()
+        {
+            Console.Write("please, enter number and press enter -> ");
+            string textNumber = Console.ReadLine();
+                return textNumber;
+        }
     }
 }
